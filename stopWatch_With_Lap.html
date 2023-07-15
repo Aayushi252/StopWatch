@@ -1,0 +1,80 @@
+<html>
+    <head>
+        <style>
+            .container{
+              align-items:center;
+              
+            }
+            body{
+              background-color:black;
+              color:white;
+      
+            }
+            </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="demo">
+                <span id="hh">
+
+                </span>
+                <span id="mm"></span>
+                <span id="ss"></span>
+            </div>
+            <script>
+                var interval;
+                var hour=document.getElementById('hh');
+                var min=document.getElementById('mm');
+                var sec=document.getElementById('ss');
+                var hh=0;
+                var mm=0
+                var ss=0;
+                function stopWatch(){
+                    ss++;
+                    if(ss>59){
+                        mm++;
+                        ss=0;
+                    }
+                    if(mm>59){
+                        hh++;
+                        mm=0;
+                    }
+                    if(hh>23){
+                        hh=0;
+                    }
+                    hour.innerText=hh;
+                    min.innerText=mm;
+                    sec.innerText=ss;
+                }
+                function start(){
+                    interval=setInterval(stopWatch,1000);
+                }
+                function reset(){
+                    ss=-1;
+                    mm=0;
+                    hh=0;
+                }
+                function stop(){
+                    clearInterval(interval);
+                }
+                var div= document.querySelector('div');
+                var ol=document.createElement('ol');
+                div.append(ol);
+                function addList(){
+                    var time=hh+':'+mm+':'+ss;
+                    var li=document.createElement('li');
+                    li.innerText=time;
+                    ol.append(li);
+
+                }
+                function lap(){
+                    addList();
+                }
+            </script>
+            <button type="button" onclick="start()">start</button>
+            <button type="button" onclick="stop()">stop</button>
+            <button type="button" onclick="reset()">reset</button>
+            <button type="button" onclick="lap()">lap</button>
+        </div>
+    </body>
+</html>
